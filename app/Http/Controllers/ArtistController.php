@@ -53,7 +53,11 @@ class ArtistController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $artist = Artist::find($id);
+
+        return view('artist.edit',[
+            'artist' => $artist,
+        ]);
     }
 
     /**
@@ -61,7 +65,21 @@ class ArtistController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //Validation form
+        $validated = $request->validate([
+            'firstname' => 'required|max:60',
+            'lastname' => 'required|max:60',
+        ]);
+
+        //Datas is valid 
+        $artist = Artist::find($id);
+
+        //MAJ datas
+        $artist->update($validated);
+
+        return view('artist.show', [
+            'artist' => $artist,
+        ]);
     }
 
     /**
