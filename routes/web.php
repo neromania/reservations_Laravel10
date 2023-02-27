@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LocalityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::put('/artist/{id}',[ArtistController::class, 'update'])->where('id','[0-9
 Route::get('/artist/create', [ArtistController::class, 'create'])->name('artist.create');
 Route::post('/artist', [ArtistController::class, 'store'])->name('artist.store');
 Route::delete('/artist/{id}', [ArtistController::class, 'destroy']) ->where('id', '[0-9]+')->name('artist.delete');
+Route::get('/locality',[LocalityController::class, 'index'])->name('locality.index');
 
 require __DIR__.'/auth.php';
 
